@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "PixelsRoll20Extension",
+    "version": "0.1",
+
+    "description": "Allows you to send Pixels Dice rolls to Roll20",
+
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "pixels_roll20@yotin1.org",
+            "strict_min_version": "50.0"
+        }
+    },
+
+    "icons": {
+        "48": "icons/logo-48.png",
+        "96": "icons/logo-96.png"
+    },
+
+    "browser_action": {
+        "default_icon": "icons/logo-48.png",
+        "default_popup": "popup/popup.html"
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://app.roll20.net/*"]
+        }
+    ],
+
+    "permissions": ["nativeMessaging"]
+}

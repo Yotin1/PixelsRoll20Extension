@@ -1,0 +1,7 @@
+{
+    "name": "pixels_roll20",
+    "description": "Server for sending/receiving dice rolls",
+    "path": "C:\\Users\\nicho\\Documents\\NodeJS\\Pixels\\server\\server.js",
+    "type": "stdio",
+    "allowed_extensions": ["pixels_roll20@yotin1.org"]
+}
