@@ -16,7 +16,9 @@ const advantage = {
 
 const numRolls = document.getElementById("numRolls");
 const modifier = document.getElementById("modifier");
+const rollBtn = document.getElementById("rollBtn");
 
+// Load state from local storage
 if (localStorage.getItem("dice") !== null) {
     dice[localStorage.getItem("dice")].checked = true;
 }
