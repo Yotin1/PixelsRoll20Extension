@@ -1,36 +1,76 @@
-const dice1Btn = document.getElementById("dice1Btn");
-const dice2Btn = document.getElementById("dice2Btn");
-const dice1Result = document.getElementById("dice1Result");
-const dice2Result = document.getElementById("dice2Result");
+const dice = {
+    d4: document.getElementById("d4"),
+    d6: document.getElementById("d6"),
+    d8: document.getElementById("d8"),
+    d10: document.getElementById("d10"),
+    d12: document.getElementById("d12"),
+    d20: document.getElementById("d20"),
+    d100: document.getElementById("d100"),
+};
 
-// Create WebSocket connection.
-const socket = new WebSocket("ws://localhost:8000");
+const advantage = {
+    normal: document.getElementById("normal"),
+    advantage: document.getElementById("advantage"),
+    disadvantage: document.getElementById("disadvantage"),
+};
 
-// Connection opened
-socket.addEventListener("open", (event) => {
-    socket.send("Hello Server!");
-    console.log("Hello World");
+const numRolls = document.getElementById("numRolls");
+const modifier = document.getElementById("modifier");
+
+if (localStorage.getItem("dice") !== null) {
+    dice[localStorage.getItem("dice")].checked = true;
+}
+
+if (localStorage.getItem("advantage") !== null) {
+    advantage[localStorage.getItem("advantage")].checked = true;
+}
+
+if (localStorage.getItem("numRolls") !== null) {
+    numRolls.value = localStorage.getItem("numRolls");
+}
+
+if (localStorage.getItem("modifier") !== null) {
+    modifier.value = localStorage.getItem("modifier");
+}
+
+for (let die of Object.values(dice)) {
+    die.addEventListener("click", (e) => {
+        localStorage.setItem("dice", e.target.value);
+    });
+}
+
+for (let advOption of Object.values(advantage)) {
+    advOption.addEventListener("click", (e) => {
+        localStorage.setItem("advantage", e.target.value);
+    });
+}
+
+numRolls.addEventListener("input", (e) => {
+    localStorage.setItem("numRolls", e.target.value);
 });
 
-socket.addEventListener("error", (event) => {
-    console.log("WebSocket error: ", event);
+modifier.addEventListener("input", (e) => {
+    localStorage.setItem("modifier", e.target.value);
 });
 
-// Listen for messages
-socket.addEventListener("message", (event) => {
-    console.log("Message from server ", event.data);
-});
+// // Create WebSocket connection.
+// const socket = new WebSocket("ws://localhost:8000");
 
-socket.addEventListener("close", (event) => {
-    console.log(event);
-});
-
-// dice1Btn.addEventListener("click", function (e) {
-//     console.log("Sending:  ping");
-//     port.postMessage("ping");
+// // Connection opened
+// socket.addEventListener("open", (event) => {
+//     socket.send("Hello Server!");
+//     console.log("Hello World");
 // });
 
-// dice2Btn.addEventListener("click", function (e) {
-//     console.log("Sending:  ping");
-//     port.postMessage("ping");
+// socket.addEventListener("error", (event) => {
+//     console.log("WebSocket error: ", event);
+// });
+
+// // Listen for messages
+// socket.addEventListener("message", (event) => {
+//     console.log("Message from server ", event.data);
+// });
+
+// socket.addEventListener("close", (event) => {
+//     console.log(event);
 // });
